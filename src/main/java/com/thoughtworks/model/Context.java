@@ -15,4 +15,17 @@ public class Context {
     public String toString() {
         return String.format("%s %s %s", location.getX(), location.getY(), direction.getValue());
     }
+
+    public void executeMove() {
+        Vector vector = getDirection().getVector();
+        this.location = new Location(getLocation().getX() + vector.getX(), getLocation().getY() + vector.getY());
+    }
+
+    private Location getLocation() {
+        return location;
+    }
+
+    private Direction getDirection() {
+        return direction;
+    }
 }
