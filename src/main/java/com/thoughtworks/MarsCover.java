@@ -2,6 +2,7 @@ package com.thoughtworks;
 
 import com.thoughtworks.model.Context;
 
+@SuppressWarnings("unused")
 public class MarsCover {
 
     private Context context;
@@ -14,7 +15,7 @@ public class MarsCover {
         context.executeMove();
     }
 
-    public Context getContext() {
-        return context;
+    public String print() {
+        return context.executePrint();
     }
 }

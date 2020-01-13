@@ -11,21 +11,20 @@ public class Context {
         this.direction = direction;
     }
 
-    @Override
-    public String toString() {
+    public void executeMove() {
+        Vector vector = getDirection().getVector();
+        this.location = new Location(location.getX() + vector.getX(), location.getY() + vector.getY());
+    }
+
+    public String executePrint() {
         return String.format("%s %s %s", location.getX(), location.getY(), direction.getValue());
     }
 
-    public void executeMove() {
-        Vector vector = getDirection().getVector();
-        this.location = new Location(getLocation().getX() + vector.getX(), getLocation().getY() + vector.getY());
-    }
-
-    private Location getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    private Direction getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 }
