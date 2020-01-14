@@ -2,10 +2,14 @@ package com.thoughtworks;
 
 import com.thoughtworks.model.Direction;
 import com.thoughtworks.model.Location;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Map;
 import java.util.function.Function;
 
+@Getter
+@AllArgsConstructor
 public class Context {
 
     private static final Map<Direction, Function<Location, Location>> vectorMap = Map.of(
@@ -18,11 +22,6 @@ public class Context {
     private Location location;
 
     private Direction direction;
-
-    public Context(Location location, Direction direction) {
-        this.location = location;
-        this.direction = direction;
-    }
 
     public String executePrint() {
         return String.format("%s %s %s", location.getX(), location.getY(), direction.getValue());
@@ -38,13 +37,5 @@ public class Context {
 
     public void executeTurnRight() {
         this.direction = direction.getRightDirection();
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public Direction getDirection() {
-        return direction;
     }
 }

@@ -1,8 +1,13 @@
 package com.thoughtworks.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+@Getter
+@AllArgsConstructor
 public enum Direction {
     North(0, "N"),
     East(1, "E"),
@@ -12,15 +17,6 @@ public enum Direction {
     private int index;
 
     private String value;
-
-    Direction(int index, String value) {
-        this.index = index;
-        this.value = value;
-    }
-
-    public String getValue() {
-        return value;
-    }
 
     public Direction getLeftDirection() {
         return parseFromIndex((index + 3) % 4);

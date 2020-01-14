@@ -3,7 +3,7 @@ package com.thoughtworks;
 import com.thoughtworks.command.*;
 import com.thoughtworks.model.Direction;
 import com.thoughtworks.model.Location;
-import com.thoughtworks.utils.FileLoader;
+import com.thoughtworks.utils.FileUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class CommandResolver {
     );
 
     public List<Command> resolve(String fileName) {
-        List<String> inputs = FileLoader.loadFile(fileName);
+        List<String> inputs = FileUtil.loadFile(fileName);
 
         if (inputs.isEmpty()) {
             throw new RuntimeException("Missing input command");

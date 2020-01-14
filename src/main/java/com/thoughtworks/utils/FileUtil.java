@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileLoader {
+public class FileUtil {
     public static List<String> loadFile(String fileName) {
         List<String> inputs = new ArrayList<>();
         File file = getFileFromResources(fileName);
@@ -20,18 +20,18 @@ public class FileLoader {
                 inputs.add(line);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to load file!");
         }
 
         return inputs;
     }
 
     private static File getFileFromResources(String fileName) {
-        ClassLoader classLoader = FileLoader.class.getClassLoader();
+        ClassLoader classLoader = FileUtil.class.getClassLoader();
         URL resource = classLoader.getResource(fileName);
 
         if (resource == null) {
-            throw new IllegalArgumentException("File is not found!");
+            throw new RuntimeException("File is not found!");
         } else {
             return new File(resource.getFile());
         }
