@@ -1,19 +1,13 @@
 package com.thoughtworks;
 
-@SuppressWarnings("unused")
+import com.thoughtworks.command.Command;
+
+import java.util.List;
+
 public class MarsCover {
 
-    private Context context;
-
-    public MarsCover(Context context) {
-        this.context = context;
-    }
-
-    public void move() {
-        context.executeMove();
-    }
-
-    public String print() {
-        return context.executePrint();
+    public static void main(String[] args) {
+        List<Command> commandList = new CommandResolver().resolve("inputs.txt");
+        commandList.forEach(Command::execute);
     }
 }

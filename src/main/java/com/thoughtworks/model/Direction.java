@@ -1,6 +1,7 @@
 package com.thoughtworks.model;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 public enum Direction {
     North(0, "N"),
@@ -22,17 +23,33 @@ public enum Direction {
     }
 
     public Direction getLeftDirection() {
-        return getDirectionByIndex((index + 3) % 4);
+        return parseFromIndex((index + 3) % 4);
     }
 
     public Direction getRightDirection() {
-        return getDirectionByIndex((index + 1) % 4);
+        return parseFromIndex((index + 1) % 4);
     }
 
-    private Direction getDirectionByIndex(int index) {
+    public static Direction parseFromValue(String value) {
+        return parseDirection(valueEqual(value));
+    }
+
+    private static Direction parseFromIndex(int index) {
+        return parseDirection(indexEqual(index));
+    }
+
+    private static Direction parseDirection(Predicate<Direction> predicate) {
         return Arrays.stream(Direction.values())
-                .filter(direction -> direction.index == index)
+                .filter(predicate)
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
+    }
+
+    private static Predicate<Direction> indexEqual(int index) {
+        return direction -> direction.index == index;
+    }
+
+    private static Predicate<Direction> valueEqual(String value) {
+        return direction -> direction.value.equals(value);
     }
 }
