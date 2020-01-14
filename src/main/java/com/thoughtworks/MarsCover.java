@@ -1,7 +1,5 @@
 package com.thoughtworks;
 
-import com.thoughtworks.model.Context;
-
 @SuppressWarnings("unused")
 public class MarsCover {
 

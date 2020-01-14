@@ -1,4 +1,7 @@
-package com.thoughtworks.model;
+package com.thoughtworks;
+
+import com.thoughtworks.model.Direction;
+import com.thoughtworks.model.Location;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -21,12 +24,20 @@ public class Context {
         this.direction = direction;
     }
 
+    public String executePrint() {
+        return String.format("%s %s %s", location.getX(), location.getY(), direction.getValue());
+    }
+
     public void executeMove() {
         this.location = vectorMap.get(direction).apply(location);
     }
 
-    public String executePrint() {
-        return String.format("%s %s %s", location.getX(), location.getY(), direction.getValue());
+    public void executeTurnLeft() {
+        this.direction = direction.getLeftDirection();
+    }
+
+    public void executeTurnRight() {
+        this.direction = direction.getRightDirection();
     }
 
     public Location getLocation() {

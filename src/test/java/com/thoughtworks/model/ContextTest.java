@@ -1,5 +1,6 @@
 package com.thoughtworks.model;
 
+import com.thoughtworks.Context;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,5 +47,23 @@ public class ContextTest {
         assertThat(context.getLocation().getX()).isEqualTo(5);
         assertThat(context.getLocation().getY()).isEqualTo(4);
         assertThat(context.getDirection()).isEqualTo(Direction.North);
+    }
+
+    @Test
+    public void should_turn_left_with_direction_north() {
+        Context context = new Context(new Location(5, 5), Direction.North);
+        context.executeTurnLeft();
+        assertThat(context.getLocation().getX()).isEqualTo(5);
+        assertThat(context.getLocation().getY()).isEqualTo(5);
+        assertThat(context.getDirection()).isEqualTo(Direction.West);
+    }
+
+    @Test
+    public void should_turn_right_with_direction_south() {
+        Context context = new Context(new Location(5, 5), Direction.North);
+        context.executeTurnRight();
+        assertThat(context.getLocation().getX()).isEqualTo(5);
+        assertThat(context.getLocation().getY()).isEqualTo(5);
+        assertThat(context.getDirection()).isEqualTo(Direction.East);
     }
 }
