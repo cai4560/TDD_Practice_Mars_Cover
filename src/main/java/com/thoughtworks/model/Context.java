@@ -1,6 +1,16 @@
 package com.thoughtworks.model;
 
+import java.util.Map;
+import java.util.function.Function;
+
 public class Context {
+
+    private static final Map<Direction, Function<Location, Location>> vectorMap = Map.of(
+            Direction.North, loc -> new Location(loc.getX(), loc.getY() - 1),
+            Direction.South, loc -> new Location(loc.getX(), loc.getY() + 1),
+            Direction.West, loc -> new Location(loc.getX() - 1, loc.getY()),
+            Direction.East, loc -> new Location(loc.getX() + 1, loc.getY())
+    );
 
     private Location location;
 
@@ -12,8 +22,7 @@ public class Context {
     }
 
     public void executeMove() {
-        Vector vector = getDirection().getVector();
-        this.location = new Location(location.getX() + vector.getX(), location.getY() + vector.getY());
+        this.location = vectorMap.get(direction).apply(location);
     }
 
     public String executePrint() {
