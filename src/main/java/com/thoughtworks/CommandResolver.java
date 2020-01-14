@@ -9,9 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CommandResolver {
+
+    private static final Pattern pattern = Pattern.compile("^(\\d+) (\\d+) ([A-Z])$");
 
     private static final Map<String, Function<Context, Command>> commandMap = Map.of(
             "P", PrintCommand::new,
@@ -26,7 +30,6 @@ public class CommandResolver {
         if (inputs.isEmpty()) {
             throw new RuntimeException("Missing input command");
         }
-
         Context context = resolveContext(inputs.get(0));
 
         List<Command> commandList = inputs.subList(1, inputs.size()).stream()
@@ -39,10 +42,14 @@ public class CommandResolver {
     }
 
     private Context resolveContext(String input) {
-        String[] dimensions = input.split(" ");
-        Location startLocation = new Location(Integer.valueOf(dimensions[0]), Integer.valueOf(dimensions[1]));
-        Direction startDirection = Direction.parseFromValue(dimensions[2]);
-        return new Context(startLocation, startDirection);
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            Location startLocation = new Location(Integer.valueOf(matcher.group(1)), Integer.valueOf(matcher.group(2)));
+            Direction startDirection = Direction.parseFromValue(matcher.group(3));
+            return new Context(startLocation, startDirection);
+        } else {
+            throw new RuntimeException("Unknown Start");
+        }
     }
 
     private Command resolveCommand(String input, Context context) {
