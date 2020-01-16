@@ -1,6 +1,7 @@
-package com.thoughtworks.model;
+package com.thoughtworks;
 
-import com.thoughtworks.Context;
+import com.thoughtworks.model.Direction;
+import com.thoughtworks.model.Location;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 
 public class CommandResolver {
 
-    private static final Pattern pattern = Pattern.compile("^(\\d+) (\\d+) ([A-Z])$");
+    private static final Pattern PATTERN = Pattern.compile("^(\\d+) (\\d+) ([A-Z])$");
 
-    private static final Map<String, Function<Context, Command>> commandMap = Map.of(
+    private static final Map<String, Function<Context, Command>> COMMAND_MAP = Map.of(
             "P", PrintCommand::new,
             "M", MoveCommand::new,
             "L", TurnLeftCommand::new,
@@ -42,7 +42,7 @@ public class CommandResolver {
     }
 
     private Context resolveContext(String input) {
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
             Location startLocation = new Location(Integer.valueOf(matcher.group(1)), Integer.valueOf(matcher.group(2)));
             Direction startDirection = Direction.parseFromValue(matcher.group(3));
@@ -53,9 +53,9 @@ public class CommandResolver {
     }
 
     private Command resolveCommand(String input, Context context) {
-        if (!commandMap.containsKey(input)) {
+        if (!COMMAND_MAP.containsKey(input)) {
             throw new RuntimeException(String.format("Unknown Command: %s", input));
         }
-        return commandMap.get(input).apply(context);
+        return COMMAND_MAP.get(input).apply(context);
     }
 }

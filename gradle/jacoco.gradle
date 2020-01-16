@@ -1,0 +1,50 @@
+ext {
+    jacocoExcludeFiles = [
+            '**/utils/**'
+    ]
+}
+
+jacocoTestCoverageVerification {
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: rootProject.ext.jacocoExcludeFiles)
+        })
+    }
+
+    violationRules {
+        rule {
+            limit {
+                counter = "BRANCH"
+                minimum = 0
+            }
+            limit {
+                counter = "METHOD"
+                minimum = 0
+            }
+            limit {
+                counter = "LINE"
+                minimum = 0
+            }
+            limit {
+                counter = "CLASS"
+                minimum = 0
+            }
+        }
+    }
+}
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories.from = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: rootProject.ext.jacocoExcludeFiles)
+        })
+    }
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/reports/coverage")
+    }
+}
+
+jacocoTestCoverageVerification.dependsOn jacocoTestReport
+check.dependsOn jacocoTestCoverageVerification

@@ -12,7 +12,7 @@ import java.util.function.Function;
 @AllArgsConstructor
 public class Context {
 
-    private static final Map<Direction, Function<Location, Location>> vectorMap = Map.of(
+    private static final Map<Direction, Function<Location, Location>> VECTOR_MAP = Map.of(
             Direction.North, loc -> new Location(loc.getX(), loc.getY() - 1),
             Direction.South, loc -> new Location(loc.getX(), loc.getY() + 1),
             Direction.West, loc -> new Location(loc.getX() - 1, loc.getY()),
@@ -28,7 +28,7 @@ public class Context {
     }
 
     public void executeMove() {
-        this.location = vectorMap.get(direction).apply(location);
+        this.location = VECTOR_MAP.get(direction).apply(location);
     }
 
     public void executeTurnLeft() {
