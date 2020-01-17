@@ -4,3 +4,7 @@
 3. 接收降落地点（x, y）和朝向信息（N，S，E，W）的信息
 
 输出: Current Location: 3 1 N
+
+New requirements:
+1. MLR相反
+2. 解析倒车指令
