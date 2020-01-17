@@ -21,7 +21,8 @@ public class CommandResolver {
             "P", PrintCommand::new,
             "M", MoveCommand::new,
             "L", TurnLeftCommand::new,
-            "R", TurnRightCommand::new
+            "R", TurnRightCommand::new,
+            "Reverse", ReverseCommand::new
     );
 
     public List<Command> resolve(String fileName) {

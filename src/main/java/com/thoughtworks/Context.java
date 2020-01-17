@@ -35,10 +35,14 @@ public class Context {
     }
 
     public void executeTurnLeft() {
-        this.direction = direction.getLeftDirection();
+        this.direction = direction.getLeftDirection(state);
     }
 
     public void executeTurnRight() {
-        this.direction = direction.getRightDirection();
+        this.direction = direction.getRightDirection(state);
+    }
+
+    public void executeReverse() {
+        this.state = this.state.reverse();
     }
 }

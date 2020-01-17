@@ -18,12 +18,20 @@ public enum Direction {
 
     private String value;
 
-    public Direction getLeftDirection() {
-        return parseFromIndex((index + 3) % 4);
+    public Direction getLeftDirection(State state) {
+        return parseFromIndex(state.isNormal() ? getLeftDirectionIndex() : getRightDirectionIndex());
     }
 
-    public Direction getRightDirection() {
-        return parseFromIndex((index + 1) % 4);
+    public Direction getRightDirection(State state) {
+        return parseFromIndex(state.isNormal() ? getRightDirectionIndex() : getLeftDirectionIndex());
+    }
+
+    private int getLeftDirectionIndex() {
+        return (this.index + 3) % 4;
+    }
+
+    private int getRightDirectionIndex() {
+        return (this.index + 1) % 4;
     }
 
     public static Direction parseFromValue(String value) {

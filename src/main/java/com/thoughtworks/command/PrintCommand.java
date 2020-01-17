@@ -10,8 +10,6 @@ public class PrintCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.println("#################################");
         System.out.println("Current Location: " + context.executePrint());
-        System.out.println("#################################");
     }
 }
