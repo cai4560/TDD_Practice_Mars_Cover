@@ -71,7 +71,7 @@ public class ContextTest {
 
     @Test
     public void should_move_back_with_direction_west_when_state_reverse() {
-        Context context = new Context(new Location(5, 5), Direction.West, State.REVERSE);
+        Context context = new Context(new Location(5, 5), Direction.West, State.REVERSED);
         context.executeMove();
         assertThat(context.getLocation().getX()).isEqualTo(6);
         assertThat(context.getLocation().getY()).isEqualTo(5);
@@ -80,7 +80,7 @@ public class ContextTest {
 
     @Test
     public void should_move_back_with_direction_east_when_state_reverse() {
-        Context context = new Context(new Location(5, 5), Direction.East, State.REVERSE);
+        Context context = new Context(new Location(5, 5), Direction.East, State.REVERSED);
         context.executeMove();
         assertThat(context.getLocation().getX()).isEqualTo(4);
         assertThat(context.getLocation().getY()).isEqualTo(5);
@@ -89,7 +89,7 @@ public class ContextTest {
 
     @Test
     public void should_move_back_with_direction_south_when_state_reverse() {
-        Context context = new Context(new Location(5, 5), Direction.South, State.REVERSE);
+        Context context = new Context(new Location(5, 5), Direction.South, State.REVERSED);
         context.executeMove();
         assertThat(context.getLocation().getX()).isEqualTo(5);
         assertThat(context.getLocation().getY()).isEqualTo(4);
@@ -98,7 +98,7 @@ public class ContextTest {
 
     @Test
     public void should_move_back_with_direction_north_when_state_reverse() {
-        Context context = new Context(new Location(5, 5), Direction.North, State.REVERSE);
+        Context context = new Context(new Location(5, 5), Direction.North, State.REVERSED);
         context.executeMove();
         assertThat(context.getLocation().getX()).isEqualTo(5);
         assertThat(context.getLocation().getY()).isEqualTo(6);

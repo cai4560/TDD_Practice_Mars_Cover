@@ -2,5 +2,9 @@ package com.thoughtworks.model;
 
 public enum State {
     NORMAL,
-    REVERSE
+    REVERSED;
+
+    public boolean isNormal() {
+        return this.equals(NORMAL);
+    }
 }

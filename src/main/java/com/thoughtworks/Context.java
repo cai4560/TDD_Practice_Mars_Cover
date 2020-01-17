@@ -1,31 +1,17 @@
 package com.thoughtworks;
 
-import com.thoughtworks.model.State;
 import com.thoughtworks.model.Direction;
 import com.thoughtworks.model.Location;
+import com.thoughtworks.model.State;
+import com.thoughtworks.model.Vector;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Map;
-import java.util.function.Function;
+import static com.thoughtworks.model.Vector.getVectorBy;
 
 @Getter
 @AllArgsConstructor
 public class Context {
-
-    private static final Map<Direction, Function<Location, Location>> VECTOR_MAP = Map.of(
-            Direction.North, loc -> new Location(loc.getX(), loc.getY() - 1),
-            Direction.South, loc -> new Location(loc.getX(), loc.getY() + 1),
-            Direction.West, loc -> new Location(loc.getX() - 1, loc.getY()),
-            Direction.East, loc -> new Location(loc.getX() + 1, loc.getY())
-    );
-
-    private static final Map<Direction, Function<Location, Location>> REVERSED_VECTOR_MAP = Map.of(
-            Direction.North, loc -> new Location(loc.getX(), loc.getY() + 1),
-            Direction.South, loc -> new Location(loc.getX(), loc.getY() - 1),
-            Direction.West, loc -> new Location(loc.getX() + 1, loc.getY()),
-            Direction.East, loc -> new Location(loc.getX() - 1, loc.getY())
-    );
 
     private Location location;
 
@@ -44,9 +30,8 @@ public class Context {
     }
 
     public void executeMove() {
-        Map<Direction, Function<Location, Location>> vectorMap = state.equals(State.NORMAL)
-                ? VECTOR_MAP : REVERSED_VECTOR_MAP;
-        this.location = vectorMap.get(direction).apply(location);
+        Vector vector = getVectorBy(direction, state);
+        this.location.addVector(vector);
     }
 
     public void executeTurnLeft() {

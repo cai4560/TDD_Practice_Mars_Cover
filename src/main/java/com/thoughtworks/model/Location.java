@@ -10,4 +10,9 @@ public class Location {
     private Integer x;
 
     private Integer y;
+
+    public void addVector(Vector vector) {
+        this.x = x + vector.getX();
+        this.y = y + vector.getY();
+    }
 }
