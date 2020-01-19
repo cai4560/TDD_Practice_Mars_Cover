@@ -4,18 +4,18 @@ import com.thoughtworks.command.Command;
 
 import java.util.List;
 
-public class MarsCover {
+public class MarsRover {
 
     private static CommandResolver commandResolver;
 
-    public MarsCover() {
+    public MarsRover() {
         commandResolver = new CommandResolver();
     }
 
     public static void main(String[] args) {
         String fileName = "inputs.txt";
-        MarsCover marsCover = new MarsCover();
-        marsCover.execute(fileName);
+        MarsRover marsRover = new MarsRover();
+        marsRover.execute(fileName);
     }
 
     public void execute(String fileName) {

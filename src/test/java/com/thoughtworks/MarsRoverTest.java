@@ -10,32 +10,32 @@ import java.io.PrintStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class MarsCoverTest {
+public class MarsRoverTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
-    private MarsCover marsCover;
+    private MarsRover marsRover;
 
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
 
-        marsCover = new MarsCover();
+        marsRover = new MarsRover();
     }
 
     @Test
     public void should_print_result_from_input_of_basic_requirement() {
-        marsCover.execute("inputs.txt");
+        marsRover.execute("inputs.txt");
         assertThat(outContent.toString()).isEqualTo("Current Location: 3 1 N\n");
     }
 
     @Test
     public void should_print_result_from_input_of_new_requirement_1() {
-        marsCover.execute("inputs2.txt");
+        marsRover.execute("inputs2.txt");
         assertThat(outContent.toString()).isEqualTo("Current Location: 3 1 N\n"
                 + "Current Location: 5 5 N\n");
     }

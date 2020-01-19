@@ -3,7 +3,7 @@ ext {
             '**/command/**',
             '**/utils/**',
             '**/CommandResolver.class',
-            '**/MarsCover.class',
+            '**/MarsRover.class',
     ]
 }
 

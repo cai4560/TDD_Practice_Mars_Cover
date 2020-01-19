@@ -1,5 +1,5 @@
-# TDD_Practice_Mars_Cover
-TDD Practice of Mars Cover, please refer the `requirement.txt` for subject.
+# TDD_Practice_Mars_Rover
+TDD Practice of Mars Rover, please refer the `requirement.txt` for subject.
                           
 ## Dependency
 * JDK 11 LTS
