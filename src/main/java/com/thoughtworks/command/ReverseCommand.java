@@ -2,10 +2,12 @@ package com.thoughtworks.command;
 
 import com.thoughtworks.Context;
 
-public class ReverseCommand extends Command {
+public class ReverseCommand implements Command {
+
+    private final Context context;
 
     public ReverseCommand(Context context) {
-        super(context);
+        this.context = context;
     }
 
     @Override

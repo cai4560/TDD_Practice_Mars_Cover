@@ -2,10 +2,12 @@ package com.thoughtworks.command;
 
 import com.thoughtworks.Context;
 
-public class PrintCommand extends Command {
+public class PrintCommand implements Command {
+
+    private final Context context;
 
     public PrintCommand(Context context) {
-        super(context);
+        this.context = context;
     }
 
     @Override

@@ -2,10 +2,12 @@ package com.thoughtworks.command;
 
 import com.thoughtworks.Context;
 
-public class MoveCommand extends Command {
+public class MoveCommand implements Command {
+
+    private final Context context;
 
     public MoveCommand(Context context) {
-        super(context);
+        this.context = context;
     }
 
     @Override

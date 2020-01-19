@@ -1,14 +1,6 @@
 package com.thoughtworks.command;
 
-import com.thoughtworks.Context;
+public interface Command {
 
-public abstract class Command {
-
-    protected Context context;
-
-    public Command(Context context) {
-        this.context = context;
-    }
-
-    public abstract void execute();
+    void execute();
 }
