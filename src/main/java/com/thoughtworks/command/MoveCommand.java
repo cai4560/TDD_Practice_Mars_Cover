@@ -1,17 +1,17 @@
 package com.thoughtworks.command;
 
-import com.thoughtworks.Context;
+import com.thoughtworks.Rover;
 
 public class MoveCommand implements Command {
 
-    private final Context context;
+    private final Rover rover;
 
-    public MoveCommand(Context context) {
-        this.context = context;
+    public MoveCommand(Rover rover) {
+        this.rover = rover;
     }
 
     @Override
     public void execute() {
-        context.executeMove();
+        rover.executeMove();
     }
 }

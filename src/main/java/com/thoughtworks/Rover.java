@@ -11,7 +11,7 @@ import static com.thoughtworks.model.Vector.getVectorBy;
 
 @Getter
 @AllArgsConstructor
-public class Context {
+public class Rover {
 
     private Location location;
 
@@ -19,7 +19,7 @@ public class Context {
 
     private State state;
 
-    public Context(Location location, Direction direction) {
+    public Rover(Location location, Direction direction) {
         this.location = location;
         this.direction = direction;
         this.state = State.NORMAL;

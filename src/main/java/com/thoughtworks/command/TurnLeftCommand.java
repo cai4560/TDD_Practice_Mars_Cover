@@ -1,17 +1,17 @@
 package com.thoughtworks.command;
 
-import com.thoughtworks.Context;
+import com.thoughtworks.Rover;
 
 public class TurnLeftCommand implements Command {
 
-    private final Context context;
+    private final Rover rover;
 
-    public TurnLeftCommand(Context context) {
-        this.context = context;
+    public TurnLeftCommand(Rover rover) {
+        this.rover = rover;
     }
 
     @Override
     public void execute() {
-        context.executeTurnLeft();
+        rover.executeTurnLeft();
     }
 }

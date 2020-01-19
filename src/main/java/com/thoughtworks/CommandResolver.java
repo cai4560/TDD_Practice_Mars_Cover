@@ -17,7 +17,7 @@ public class CommandResolver {
 
     private static final Pattern PATTERN = Pattern.compile("^(\\d+) (\\d+) ([A-Z])$");
 
-    private static final Map<String, Function<Context, Command>> COMMAND_MAP = Map.of(
+    private static final Map<String, Function<Rover, Command>> COMMAND_MAP = Map.of(
             "P", PrintCommand::new,
             "M", MoveCommand::new,
             "L", TurnLeftCommand::new,
@@ -31,32 +31,32 @@ public class CommandResolver {
         if (inputs.isEmpty()) {
             throw new RuntimeException("Missing input command");
         }
-        Context context = resolveContext(inputs.get(0));
+        Rover rover = resolveContext(inputs.get(0));
 
         List<Command> commandList = inputs.subList(1, inputs.size()).stream()
-                .map(input -> resolveCommand(input, context))
+                .map(input -> resolveCommand(input, rover))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
-        commandList.add(new PrintCommand(context));
+        commandList.add(new PrintCommand(rover));
         return commandList;
     }
 
-    private Context resolveContext(String input) {
+    private Rover resolveContext(String input) {
         Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
             Location startLocation = new Location(Integer.valueOf(matcher.group(1)), Integer.valueOf(matcher.group(2)));
             Direction startDirection = Direction.parseFromValue(matcher.group(3));
-            return new Context(startLocation, startDirection);
+            return new Rover(startLocation, startDirection);
         } else {
             throw new RuntimeException("Unknown Start");
         }
     }
 
-    private Command resolveCommand(String input, Context context) {
+    private Command resolveCommand(String input, Rover rover) {
         if (!COMMAND_MAP.containsKey(input)) {
             throw new RuntimeException(String.format("Unknown Command: %s", input));
         }
-        return COMMAND_MAP.get(input).apply(context);
+        return COMMAND_MAP.get(input).apply(rover);
     }
 }

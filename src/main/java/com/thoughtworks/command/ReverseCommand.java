@@ -1,17 +1,17 @@
 package com.thoughtworks.command;
 
-import com.thoughtworks.Context;
+import com.thoughtworks.Rover;
 
 public class ReverseCommand implements Command {
 
-    private final Context context;
+    private final Rover rover;
 
-    public ReverseCommand(Context context) {
-        this.context = context;
+    public ReverseCommand(Rover rover) {
+        this.rover = rover;
     }
 
     @Override
     public void execute() {
-        context.executeReverse();
+        rover.executeReverse();
     }
 }
