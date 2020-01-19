@@ -1,0 +1,19 @@
+5 5 N
+M
+M
+L
+M
+M
+R
+M
+M
+P
+Reverse
+M
+M
+R
+M
+M
+L
+M
+M

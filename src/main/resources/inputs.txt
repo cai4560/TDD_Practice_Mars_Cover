@@ -7,13 +7,3 @@ M
 R
 M
 M
-P
-Reverse
-M
-M
-R
-M
-M
-L
-M
-M
